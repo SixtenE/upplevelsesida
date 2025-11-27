@@ -23,7 +23,9 @@
       upplevelsesida
     </h1>
     <div class="w-full sm:w-2xl flex flex-col gap-6">
-      <div class="h-20 w-full px-8 py-3 grid grid-cols-3 bg-neutral-400 rounded-3xl">
+      <div
+        class="h-20 w-full px-8 py-3 grid grid-cols-3 bg-neutral-400 border-b-4 border-neutral-500 rounded-3xl"
+      >
         <div
           class="w-full border-r border-neutral-500 h-full flex flex-col justify-center items-center pl-4"
         >
@@ -57,7 +59,9 @@
         </div>
       </div>
       <div class="w-full flex justify-end px-3">
-        <button class="py-3 px-5 text-sm bg-blue-600 text-white rounded-2xl">
+        <button
+          class="py-3 px-5 text-sm border-b-4 border-blue-800 bg-blue-600 text-white rounded-2xl"
+        >
           Hitta upplevelser
         </button>
       </div>
