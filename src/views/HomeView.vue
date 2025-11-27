@@ -1,15 +1,20 @@
 <script lang="ts" setup>
-// type experience = {
-//   id: string
-//   title: string
-//   description: string
-//   image_url: string
-//   price: number
-//   location: string
-//   date: string
-//   rating: number
-//   group_size: number
-// }
+type experience = {
+  id: string
+  title: string
+  description: string
+  image_url: string
+  price: number
+  location: string
+  date: string
+  rating: number
+  age_group: 'child' | 'adult' | 'senior'
+  add_ons: {
+    id: string
+    title: string
+    price: number
+  }[]
+}
 </script>
 
 <template>
