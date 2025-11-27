@@ -1,30 +1,20 @@
 <script lang="ts" setup>
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Separator } from '@/components/ui/separator'
-
-import CardTitle from '@/components/ui/card/CardTitle.vue'
-
-const handleSubmit = () => {
-  // Handle form submission logic here
-}
+// type experience = {
+//   id: string
+//   title: string
+//   description: string
+//   image_url: string
+//   price: number
+//   location: string
+//   date: string
+//   rating: number
+//   group_size: number
+// }
 </script>
 
 <template>
-  <main class="container mx-auto max-w-xl flex min-h-screen flex-col justify-center">
-    <Card>
-      <CardHeader>
-        <CardTitle>Sök bland upplevelser</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form @submit.prevent="handleSubmit">
-          <div class="flex gap-4">
-            <Input id="checkout-7j9-card-number-uw1" placeholder="1234 5678 9012 3456" required />
-            <Separator orientation="vertical" />
-            <Input id="checkout-7j9-card-number-uw1" placeholder="1234 5678 9012 3456" required />
-          </div>
-        </form>
-      </CardContent>
-    </Card>
+  <main class="container mx-auto flex flex-col pt-44 items-center gap-16">
+    <h1 class="text-center text-black dark:text-white text-6xl">upplevelsesida</h1>
+    <div class="bg-neutral-400 h-48 w-2xl rounded-3xl"></div>
   </main>
 </template>
