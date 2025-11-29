@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { RouterLink } from 'vue-router'
+
 // type experience = {
 //   id: string
 //   title: string
@@ -18,18 +20,18 @@
 </script>
 
 <template>
-  <main class="container mx-auto flex flex-col pt-44 items-center gap-16">
+  <main class="container mx-auto flex flex-col pt-32 sm:pt-44 items-center gap-16">
     <h1 class="text-center text-black dark:text-white text-6xl font-medium tracking-tight">
       upplevelsesida
     </h1>
-    <div class="w-full sm:w-2xl flex flex-col gap-6">
+    <div class="w-full sm:w-2xl flex flex-col gap-6 px-2">
       <div
-        class="h-20 w-full px-8 py-3 grid grid-cols-3 bg-neutral-400 border-b-4 border-neutral-500 rounded-3xl"
+        class="h-20 w-full px-0 sm:px-8 py-3 grid grid-cols-3 bg-neutral-100 border-b-4 border-neutral-300 rounded-sm"
       >
         <div
           class="w-full border-r border-neutral-500 h-full flex flex-col justify-center items-center pl-4"
         >
-          <label for="location" class="w-full text-xs font-medium">Var</label>
+          <label for="location" class="w-full text-sm font-medium">Var</label>
           <input
             type="text"
             id="location"
@@ -40,7 +42,7 @@
         <div
           class="w-full border-r border-neutral-500 h-full flex flex-col justify-center items-center pl-4"
         >
-          <label for="date" class="w-full text-xs font-medium">När</label>
+          <label for="date" class="w-full text-sm font-medium">När</label>
           <input
             type="text"
             id="date"
@@ -49,7 +51,7 @@
           />
         </div>
         <div class="w-full h-full flex flex-col justify-center items-center pl-4">
-          <label for="group_size" class="w-full text-xs font-medium">Antal</label>
+          <label for="group_size" class="w-full text-sm font-medium">Antal</label>
           <input
             type="text"
             id="group_size"
@@ -59,11 +61,13 @@
         </div>
       </div>
       <div class="w-full flex justify-end px-3">
-        <button
-          class="py-3 px-5 text-sm border-b-4 border-blue-800 bg-blue-600 text-white rounded-2xl"
-        >
-          Hitta upplevelser
-        </button>
+        <RouterLink to="/#123">
+          <button
+            class="py-3 px-5 text-sm border-b-4 border-blue-800 bg-blue-600 text-white rounded-sm"
+          >
+            Hitta upplevelser
+          </button>
+        </RouterLink>
       </div>
     </div>
   </main>
