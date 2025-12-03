@@ -9,6 +9,7 @@ const experiences = rawExperiences as Experience[]
 type BookingSelection = {
   id: string
   experienceId: string
+  price: number
   ageGroup: AgeGroup | ''
   date: string
   totalPeople: number
@@ -21,6 +22,7 @@ export const useCartStore = defineStore('cart', () => {
   const selectedExperienceId = ref<string | null>(null)
   const ageGroup = ref<AgeGroup | ''>('')
   const date = ref('')
+  const price = ref(0)
   const totalPeople = ref(1)
   const selections = ref<BookingSelection[]>([])
   const normalizeTotalPeople = (value: number) => (value > 0 ? Math.trunc(value) : 1)
@@ -28,9 +30,14 @@ export const useCartStore = defineStore('cart', () => {
   const selectedExperience = computed(
     () => experiences.find((exp) => exp.id === selectedExperienceId.value) ?? null,
   )
-
+  function setPrice(value: number) {
+    price.value = value
+  }
   function setExperience(id: string | null) {
     selectedExperienceId.value = id
+    const experiencePrice =
+      id !== null ? experiences.find((exp) => exp.id === id)?.price ?? 0 : 0
+    price.value = experiencePrice
   }
 
   function setAgeGroup(value: AgeGroup | '') {
@@ -49,6 +56,7 @@ export const useCartStore = defineStore('cart', () => {
     selectedExperienceId.value = exp.id
     ageGroup.value = exp.age_group
     date.value = exp.date
+    price.value = exp.price
   }
 
   function addSelection() {
@@ -62,6 +70,7 @@ export const useCartStore = defineStore('cart', () => {
     selections.value.push({
       id,
       experienceId: selectedExperienceId.value,
+      price: price.value || selectedExperience.value?.price || 0,
       ageGroup: ageGroup.value,
       date: date.value,
       totalPeople: totalPeople.value,
@@ -73,6 +82,7 @@ export const useCartStore = defineStore('cart', () => {
     selectedExperienceId.value = null
     ageGroup.value = ''
     date.value = ''
+    price.value = 0
     totalPeople.value = 1
     selections.value = []
   }
@@ -81,6 +91,7 @@ export const useCartStore = defineStore('cart', () => {
   return {
     ageGroup,
     date,
+    price,
     totalPeople,
     selectedExperienceId,
     selectedExperience,
@@ -89,6 +100,7 @@ export const useCartStore = defineStore('cart', () => {
     setAgeGroup,
     setDate,
     setTotalPeople,
+    setPrice,
     hydrateFromExperience,
     addSelection,
     clear,
