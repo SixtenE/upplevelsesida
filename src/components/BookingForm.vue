@@ -150,6 +150,7 @@ const handleSubmit = () => {
   cartStore.setTotalPeople(state.totalPeople)
   cartStore.addSelection()
   showSaved.value = true
+  console.log(cartStore.selections)
  
   if (hideSavedTimer) {
     clearTimeout(hideSavedTimer)
@@ -169,6 +170,16 @@ watch(
   },
   { deep: true, immediate: true },
 )
+
+
+const clearCart = () => {
+  cartStore.clear()
+  state.ageGroup = ''
+  state.date = ''
+  state.totalPeople = 1
+}
+
+  
 </script>
 
 <template>
@@ -177,6 +188,7 @@ watch(
       class="rounded-2xl border border-neutral-200 bg-white/80 shadow-sm backdrop-blur flex flex-col gap-6 p-6"
       @submit.prevent="handleSubmit"
     >
+    
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <label class="flex flex-col gap-2 text-sm font-medium text-neutral-800">
           <span>Experience</span>
@@ -225,12 +237,20 @@ watch(
       
 
       <div class="flex justify-end">
+        <router-link class="rounded-xl bg-black/90 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-black/70 disabled:cursor-not-allowed disabled:bg-neutral-300" to="/">> home</router-link>
         <button
-          class="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-neutral-300"
+          class="rounded-xl bg-black/90 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-black/70 disabled:cursor-not-allowed disabled:bg-neutral-300"
           type="submit"
           :disabled="!canSubmit"
         >
-          Skicka
+          buy
+        </button>
+        <button
+          class="ml-3 rounded-xl border border-neutral-300 px-5 py-3 text-sm font-semibold text-neutral-800 shadow hover:bg-neutral-100"
+          type="button"
+          @click="clearCart"
+        >
+          Clear cart
         </button>
       </div>
     </form>

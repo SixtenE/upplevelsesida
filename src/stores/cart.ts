@@ -1,5 +1,4 @@
-import { StorageSerializers, useStorage } from '@vueuse/core'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import rawExperiences from '@/data/data.json'
@@ -16,22 +15,15 @@ type BookingSelection = {
   createdAt: number
 }
 
+
+
 export const useCartStore = defineStore('cart', () => {
-  const selectedExperienceId = useStorage<string | null>('cart:selectedExperienceId', null, undefined, {
-    serializer: StorageSerializers.object,
-  })
-  const ageGroup = useStorage<AgeGroup | ''>('cart:ageGroup', '', undefined, {
-    serializer: StorageSerializers.object,
-  })
-  const date = useStorage('cart:date', '')
-  const totalPeople = useStorage('cart:totalPeople', 1, undefined, {
-    serializer: StorageSerializers.number,
-  })
-  const selections = useStorage<BookingSelection[]>('cart:selections', [], undefined, {
-    serializer: StorageSerializers.object,
-  })
+  const selectedExperienceId = ref<string | null>(null)
+  const ageGroup = ref<AgeGroup | ''>('')
+  const date = ref('')
+  const totalPeople = ref(1)
+  const selections = ref<BookingSelection[]>([])
   const normalizeTotalPeople = (value: number) => (value > 0 ? Math.trunc(value) : 1)
-  totalPeople.value = normalizeTotalPeople(totalPeople.value)
 
   const selectedExperience = computed(
     () => experiences.find((exp) => exp.id === selectedExperienceId.value) ?? null,
@@ -77,6 +69,15 @@ export const useCartStore = defineStore('cart', () => {
     })
   }
 
+  function clear() {
+    selectedExperienceId.value = null
+    ageGroup.value = ''
+    date.value = ''
+    totalPeople.value = 1
+    selections.value = []
+  }
+
+
   return {
     ageGroup,
     date,
@@ -90,6 +91,7 @@ export const useCartStore = defineStore('cart', () => {
     setTotalPeople,
     hydrateFromExperience,
     addSelection,
+    clear,
     experiences,
   }
 })
