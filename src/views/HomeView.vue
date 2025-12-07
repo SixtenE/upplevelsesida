@@ -5,8 +5,10 @@ import { motion } from 'motion-v'
 import data from '@/data/data.json'
 import type { Experience } from '@/types/Experience'
 import router from '@/router'
+import { useCartStore } from '@/stores/cart'
 
 const experiences = data.sort(() => Math.random() - 0.5) as Experience[]
+const cartStore = useCartStore()
 
 const articles = [
   {
@@ -18,11 +20,27 @@ const articles = [
   },
 ]
 
-const date = ref(router.currentRoute.value.query.date as string)
+const date = ref((router.currentRoute.value.query.date as string) || '')
+const location = ref((router.currentRoute.value.query.location as string) || '')
+const group_size = ref((router.currentRoute.value.query.group_size as unknown as number) || 1)
 
 watch(date, (newDate) => {
   router.push({ query: { date: newDate } })
 })
+
+const addToCart = (experience: Experience, event: Event) => {
+  event.preventDefault()
+  event.stopPropagation()
+  cartStore.hydrateFromExperience(experience)
+  cartStore.setTotalPeople(1)
+  cartStore.addSelection()
+}
+
+const clearSearch = () => {
+  date.value = ''
+  location.value = ''
+  group_size.value = 1
+}
 </script>
 
 <template>
@@ -83,6 +101,7 @@ watch(date, (newDate) => {
           <input
             type="number"
             id="group_size"
+            v-model="group_size"
             min="1"
             class="w-full placeholder:text-sm text-neutral-800 text-sm placeholder:font-normal placeholder:text-neutral-600 focus:outline-none"
             placeholder="Lägg till personer"
@@ -90,16 +109,15 @@ watch(date, (newDate) => {
         </div>
       </motion.div>
       <div class="w-full flex justify-end px-3">
-        <RouterLink to="/#2">
-          <motion.button
-            :initial="{ y: 10 }"
-            :animate="{ y: 0 }"
-            :transition="{ duration: 0.3 }"
-            class="py-3 px-5 text-sm border-b-4 border-blue-800 bg-blue-600 text-white rounded-sm"
-          >
-            Hitta upplevelser
-          </motion.button>
-        </RouterLink>
+        <motion.button
+          :initial="{ y: 10 }"
+          :animate="{ y: 0 }"
+          :transition="{ duration: 0.3 }"
+          class="py-3 px-5 text-sm border-b-4 border-blue-800 bg-blue-600 text-white rounded-sm"
+          @click="clearSearch"
+        >
+          Rensa sökning
+        </motion.button>
       </div>
     </div>
     <h1
@@ -108,7 +126,7 @@ watch(date, (newDate) => {
       Upplevelser
     </h1>
     <div class="w-full flex flex-col gap-6 px-2">
-      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <motion.li
           layout
           :initial="{ opacity: 0 }"
@@ -136,13 +154,27 @@ watch(date, (newDate) => {
               <p class="text-neutral-600 dark:text-neutral-400 leading-tight text-sm">
                 {{ experience.location }}
               </p>
-              <div class="mt-auto pt-2 border-t border-neutral-300 dark:border-neutral-700">
+              <div class="flex items-center gap-1">
+                <span class="text-sm">⭐</span>
+                <span class="text-neutral-800 dark:text-neutral-200 text-sm font-medium">
+                  {{ experience.rating }}
+                </span>
+              </div>
+              <div
+                class="mt-auto pt-2 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between gap-2"
+              >
                 <p class="text-neutral-800 dark:text-neutral-200 text-base font-medium">
                   <span class="text-2xl font-medium">{{ experience.price }} kr</span>
                   <span class="text-sm text-neutral-600 dark:text-neutral-400 font-normal">
                     / person
                   </span>
                 </p>
+                <button
+                  @click.stop.prevent="addToCart(experience, $event)"
+                  class="py-1.5 px-3 text-xs border-b-2 border-blue-800 bg-blue-600 text-white rounded-sm hover:bg-blue-700 transition-colors whitespace-nowrap"
+                >
+                  Boka
+                </button>
               </div>
             </div>
           </RouterLink>
