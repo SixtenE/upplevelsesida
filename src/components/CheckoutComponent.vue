@@ -42,16 +42,9 @@ const handlePlaceOrder = () => {
   <section class="min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black py-12 text-slate-100">
     <div class="container mx-auto max-w-6xl px-4 flex flex-col gap-8">
       <header class="flex flex-col gap-3">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-          Din bokning
-        </p>
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div class="space-y-2">
             <h1 class="text-3xl md:text-4xl font-semibold text-white">Checkout</h1>
-            <p class="text-slate-200 max-w-2xl">
-              We collect your booking details so you can review the date, age group, and price before
-              confirming.
-            </p>
           </div>
           <div class="flex gap-3">
             <RouterLink
