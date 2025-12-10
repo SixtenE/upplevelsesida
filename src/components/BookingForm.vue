@@ -183,18 +183,19 @@ const clearCart = () => {
 </script>
 
 <template>
-  <section class="container mx-auto max-w-4xl px-4 py-12 flex flex-col gap-8">
+  <section class="min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-slate-100">
+    <div class="container mx-auto max-w-4xl px-4 py-12 flex flex-col gap-8">
     <form
-      class="rounded-2xl border border-neutral-200 bg-white/80 shadow-sm backdrop-blur flex flex-col gap-6 p-6"
+      class="rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg backdrop-blur flex flex-col gap-6 p-6"
       @submit.prevent="handleSubmit"
     >
     
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <label class="flex flex-col gap-2 text-sm font-medium text-neutral-800">
+        <label class="flex flex-col gap-2 text-sm font-medium text-slate-100">
           <span>Experience</span>
           <select
             v-model="state.experienceId"
-            class="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-inner focus:border-blue-500 focus:outline-none"
+            class="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm text-slate-100 shadow-inner focus:border-blue-500 focus:outline-none"
           >
             <option v-for="experience in experiences" :key="experience.id" :value="experience.id">
               {{ experience.title }}
@@ -202,11 +203,11 @@ const clearCart = () => {
           </select>
         </label>
 
-        <label class="flex flex-col gap-2 text-sm font-medium text-neutral-800">
+        <label class="flex flex-col gap-2 text-sm font-medium text-slate-100">
           <span>Age group</span>
           <select
             v-model="state.ageGroup"
-            class="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-inner focus:border-blue-500 focus:outline-none"
+            class="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm text-slate-100 shadow-inner focus:border-blue-500 focus:outline-none"
           >
             <option value="">Select</option>
             <option v-for="group in ageGroupOptions" :key="group" :value="group">
@@ -215,38 +216,38 @@ const clearCart = () => {
           </select>
         </label>
 
-        <label class="flex flex-col gap-2 text-sm font-medium text-neutral-800">
+        <label class="flex flex-col gap-2 text-sm font-medium text-slate-100">
           <span>Date</span>
           <input
             v-model="state.date"
             type="date"
-            class="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-inner focus:border-blue-500 focus:outline-none"
+            class="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm text-slate-100 shadow-inner focus:border-blue-500 focus:outline-none"
           />
         </label>
 
-        <label class="flex flex-col gap-2 text-sm font-medium text-neutral-800">
+        <label class="flex flex-col gap-2 text-sm font-medium text-slate-100">
           <span>Total people</span>
           <input
             v-model.number="state.totalPeople"
             type="number"
             min="1"
-            class="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-inner focus:border-blue-500 focus:outline-none"
+            class="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm text-slate-100 shadow-inner focus:border-blue-500 focus:outline-none"
           />
         </label>
       </div>
       
 
       <div class="flex justify-end">
-        <router-link class="rounded-xl bg-black/90 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-black/70 disabled:cursor-not-allowed disabled:bg-neutral-300" to="/checkout">> Checkout</router-link>
+        <router-link class="rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 hover:bg-blue-400 transition disabled:cursor-not-allowed disabled:bg-slate-700" to="/checkout">> Checkout</router-link>
         <button
-          class="rounded-xl bg-black/90 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-black/70 disabled:cursor-not-allowed disabled:bg-neutral-300"
+          class="rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 hover:bg-blue-400 transition disabled:cursor-not-allowed disabled:bg-slate-700"
           type="submit"
           :disabled="!canSubmit"
         >
           buy
         </button>
         <button
-          class="ml-3 rounded-xl border border-neutral-300 px-5 py-3 text-sm font-semibold text-neutral-800 shadow hover:bg-neutral-100"
+          class="ml-3 rounded-xl border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-100 shadow hover:bg-slate-800"
           type="button"
           @click="clearCart"
         >
@@ -258,7 +259,7 @@ const clearCart = () => {
     <transition name="fade">
       <div
         v-if="showSaved"
-        class="fixed bottom-6 right-6 rounded-xl bg-black/60 text-white px-4 py-3 text-sm shadow-lg"
+        class="fixed bottom-6 right-6 rounded-xl bg-slate-900/90 text-white px-4 py-3 text-sm shadow-lg shadow-blue-500/15"
       >
         Sparat denna bokning!
       </div>
@@ -266,21 +267,22 @@ const clearCart = () => {
 
     <div
       v-if="selectedExperience"
-      class="rounded-2xl border border-neutral-200 bg-white/70 shadow-sm p-6 flex flex-col gap-2"
+      class="rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg p-6 flex flex-col gap-2"
     >
-      <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Selected experience</p>
-      <h2 class="text-xl font-semibold text-neutral-900">{{ selectedExperience.title }}</h2>
-      <p class="text-sm text-neutral-600">
+      <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Selected experience</p>
+      <h2 class="text-xl font-semibold text-white">{{ selectedExperience.title }}</h2>
+      <p class="text-sm text-slate-300">
         {{ selectedExperience.location }} - {{ selectedExperience.date }} -
         Age: {{ selectedExperience.age_group }}
       </p>
-      <p class="text-sm text-neutral-700">{{ selectedExperience.description }}</p>
-      <p class="text-lg font-semibold text-neutral-900 mt-2">{{ selectedExperience.price }} kr</p>
-      <img :src="selectedExperience.image_url" :alt="selectedExperience.title" class="rounded-lg mt-4" />
+      <p class="text-sm text-slate-200">{{ selectedExperience.description }}</p>
+      <p class="text-lg font-semibold text-emerald-300 mt-2">{{ selectedExperience.price }} kr</p>
+      <img :src="selectedExperience.image_url" :alt="selectedExperience.title" class="rounded-lg mt-4 border border-slate-800" />
     </div>
 
-    <div v-else class="rounded-2xl border border-amber-200 bg-amber-50 text-amber-900 p-4 text-sm">
+    <div v-else class="rounded-2xl border border-amber-400/70 bg-amber-400/10 text-amber-100 p-4 text-sm">
       No experiences in data.json - add an entry first.
+    </div>
     </div>
   </section>
 </template>
