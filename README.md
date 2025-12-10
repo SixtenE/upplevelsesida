@@ -1,54 +1,73 @@
-# .
+# Upplevelsesida
 
-This template should help get you started developing with Vue 3 in Vite.
+## Kravspecifikation - Todo List
 
-## Recommended IDE Setup
+### Startsida (grundläggande funktioner)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- [x] Sökformulär där användaren kan välja:
+  - [x] Datum för upplevelsen
+  - [x] Antal personer
+  - [x] Ålderskategorier (Barn/Vuxen/Senior)
+- [x] Lista med upplevelser och "boka" och "läs mer"-knappar
+- [x] När användaren klickar "Läs mer" följer valen från sökformuläret med som query params till upplevelse-sidan
+- [x] När användare klickar "Boka" följer valen från sökformuläret med som query params till boka-sidan
+- [x] Tre korta artiklar som berättar om upplevelserna
 
-## Recommended Browser Setup
+### Visa upplevelse-sida (grundläggande funktioner)
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- [ ] Route `/upplevelse/:id` skapad
+- [ ] Bild på upplevelse
+- [ ] Kort beskrivning av upplevelse
+- [ ] Summering av val från startsidan (datum, antal personer etc. från query params)
+- [ ] "Boka"-knapp som går till bokningssidan
 
-## Type Support for `.vue` Imports in TS
+### Bokningssida (grundläggande funktioner)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- [x] Förifyllt formulär baserat på val från tidigare steg (om query params finns)
+- [ ] Antal dagar resan ska vara
+- [x] Hur många personer som ska med
+- [x] Ålderskategorier på personerna (t.ex. Barn 0-12, Vuxen 13-64, Senior 65+)
+- [ ] Valfritt: Olika priser per kategori
+- [x] URL params uppdateras dynamiskt när användaren ändrar sina val
+- [x] Lägg till bokad upplevelse till kundkorg (Pinia)
 
-## Customize configuration
+### Paketerbjudande (grundläggande funktioner)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- [x] Minst tre olika paket/tillval som kan läggas till en bokning (finns i data.json som `add_ons`)
+- [ ] Paketen ska visas på bokningssidan
+- [ ] Kan läggas till i kundkorgen tillsammans med huvudupplevelsen
 
-## Project Setup
+### Spara bokningar till kundkorg (grundläggande funktioner)
 
-```sh
-npm install
-```
+- [x] Möjlighet att lägga bokningar till kundkorg (Pinia)
+- [ ] Se summering (total kostnad etc.) av bokningar som finns tillgängliga
+- [x] Tömma kundkorg
+- [ ] Knapp för "Gå till betalning" (ingen faktisk betalfunktion krävs, men kan visa en bekräftelsesida)
 
-### Compile and Hot-Reload for Development
+### Skapa datan
 
-```sh
-npm run dev
-```
+- [x] Minst tre artiklar som berättar om upplevelserna (tre artiklar totalt, inte för varje upplevelse)
+- [x] Data för upplevelser (minst 5-8 olika upplevelser att välja mellan) - 20+ upplevelser finns
+- [x] 1-3 tillval/paket per upplevelse
+- [x] Datakälla: En data.json fil som importeras/hämtas med fetch
 
-### Type-Check, Compile and Minify for Production
+### Routing
 
-```sh
-npm run build
-```
+- [x] `/` - Startsida med sökformulär och upplevelser
+- [ ] `/upplevelse/:id` - Visa specifik upplevelse
+- [x] `/boka/:id` eller `/bokning` - Bokningssida för specifik upplevelse
+- [ ] `/kundkorg` - Kundkorgsvy
+- [ ] Valfritt: Separata sidor för artiklar (t.ex. `/artikel/:id`)
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Tekniska krav
 
-```sh
-npm run test:unit
-```
+- [x] Vue.js med TypeScript
+- [x] Vue Router implementerat
+- [x] Pinia implementerat för state management
 
-### Lint with [ESLint](https://eslint.org/)
+### Individuell bidragsrapport
 
-```sh
-npm run lint
-```
+- [ ] Individuell bidragsrapport som motiverar val av:
+  - [ ] Komponentstruktur
+  - [ ] Routing-lösning
+  - [ ] State management-lösning
