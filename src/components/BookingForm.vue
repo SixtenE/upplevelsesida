@@ -237,7 +237,7 @@ const clearCart = () => {
       
 
       <div class="flex justify-end">
-        <router-link class="rounded-xl bg-black/90 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-black/70 disabled:cursor-not-allowed disabled:bg-neutral-300" to="/">> home</router-link>
+        <router-link class="rounded-xl bg-black/90 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-black/70 disabled:cursor-not-allowed disabled:bg-neutral-300" to="/checkout">> Checkout</router-link>
         <button
           class="rounded-xl bg-black/90 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-black/70 disabled:cursor-not-allowed disabled:bg-neutral-300"
           type="submit"
@@ -276,6 +276,7 @@ const clearCart = () => {
       </p>
       <p class="text-sm text-neutral-700">{{ selectedExperience.description }}</p>
       <p class="text-lg font-semibold text-neutral-900 mt-2">{{ selectedExperience.price }} kr</p>
+      <img :src="selectedExperience.image_url" :alt="selectedExperience.title" class="rounded-lg mt-4" />
     </div>
 
     <div v-else class="rounded-2xl border border-amber-200 bg-amber-50 text-amber-900 p-4 text-sm">
