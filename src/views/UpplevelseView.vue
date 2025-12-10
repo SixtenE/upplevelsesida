@@ -1,15 +1,29 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import data from '@/data/data.json'
+import { useCartStore } from '@/stores/cart'
+import type { Experience } from '@/types/Experience'
 
 const route = useRoute()
-const upplevelse = ref<any>(null)
+const cartStore = useCartStore()
+const upplevelse = ref<Experience | null>(null)
+const totalPeople = ref(1)
 
 onMounted(() => {
   const id = route.params.id as string
-  upplevelse.value = data.find((item) => item.id === id)
+  upplevelse.value = (data as Experience[]).find((item) => item.id === id) || null
 })
+
+const addToCart = () => {
+  if (!upplevelse.value) return
+  
+  cartStore.hydrateFromExperience(upplevelse.value)
+  cartStore.setTotalPeople(totalPeople.value)
+  cartStore.addSelection()
+
+}
 </script>
 
 <template>
@@ -59,9 +73,31 @@ onMounted(() => {
             </ul>
           </div>
           
-          <button class="mt-auto w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer">
+          <div>
+            <label for="totalPeople" class="text-sm opacity-70 block mb-2">Antal personer</label>
+            <input
+              id="totalPeople"
+              v-model.number="totalPeople"
+              type="number"
+              min="1"
+              class="w-full px-3 py-2 border border-current/20 rounded-lg text-black dark:text-white bg-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            />
+          </div>
+          
+          <RouterLink
+            :to="{
+              path: '/bokning',
+              query: {
+                age_group: upplevelse.age_group,
+                id: upplevelse.id,
+                people: totalPeople,
+                date: upplevelse.date
+              }
+            }"
+            class="mt-auto w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer block text-center"
+          >
             Boka
-          </button>
+          </RouterLink>
         </div>
       </div>
     </div>
