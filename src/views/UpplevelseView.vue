@@ -3,11 +3,9 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { RouterLink } from 'vue-router'
 import data from '@/data/data.json'
-import { useCartStore } from '@/stores/cart'
 import type { Experience } from '@/types/Experience'
 
 const route = useRoute()
-const cartStore = useCartStore()
 const upplevelse = ref<Experience | null>(null)
 const totalPeople = ref(1)
 
@@ -16,14 +14,6 @@ onMounted(() => {
   upplevelse.value = (data as Experience[]).find((item) => item.id === id) || null
 })
 
-const addToCart = () => {
-  if (!upplevelse.value) return
-  
-  cartStore.hydrateFromExperience(upplevelse.value)
-  cartStore.setTotalPeople(totalPeople.value)
-  cartStore.addSelection()
-
-}
 </script>
 
 <template>
