@@ -39,7 +39,9 @@ const handlePlaceOrder = () => {
 </script>
 
 <template>
-  <section class="min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black py-12 text-slate-100">
+  <section
+    class="min-h-screen bg-linear-to-b from-black via-neutral-950 to-black py-12 text-slate-100"
+  >
     <div class="container mx-auto max-w-6xl px-4 flex flex-col gap-8">
       <header class="flex flex-col gap-3">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
@@ -66,10 +68,7 @@ const handlePlaceOrder = () => {
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div class="lg:col-span-2 space-y-4">
-          <div
-            v-if="hasItems"
-            class="flex flex-col gap-4"
-          >
+          <div v-if="hasItems" class="flex flex-col gap-4">
             <article
               v-for="item in lineItems"
               :key="item.selection.id"
@@ -100,8 +99,12 @@ const handlePlaceOrder = () => {
                     </h2>
                     <p class="text-sm text-slate-300">
                       {{ item.experience?.location || 'Plats saknas' }} |
-                      {{ formatDate(item.selection.date || item.experience?.date || '') }} |
-                      Age: {{ item.selection.ageGroup || item.experience?.age_group || 'Okand' }}
+                      {{
+                        formatDate(
+                          item.selection.date || item.experience?.date_range.start_date || '',
+                        )
+                      }}
+                      | Age: {{ item.selection.ageGroup || item.experience?.age_group || 'Okand' }}
                     </p>
                   </div>
                   <div class="text-right">
@@ -115,10 +118,14 @@ const handlePlaceOrder = () => {
                 </p>
 
                 <div class="flex flex-wrap items-center gap-3 text-sm text-slate-200">
-                  <span class="rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 font-medium text-slate-100">
+                  <span
+                    class="rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 font-medium text-slate-100"
+                  >
                     {{ item.unitPrice }} kr / person
                   </span>
-                  <span class="rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 font-medium text-slate-100">
+                  <span
+                    class="rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 font-medium text-slate-100"
+                  >
                     {{ item.selection.totalPeople }} personer
                   </span>
                   <span
@@ -149,7 +156,9 @@ const handlePlaceOrder = () => {
           </div>
         </div>
 
-        <aside class="rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg p-5 md:p-6 h-fit">
+        <aside
+          class="rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg p-5 md:p-6 h-fit"
+        >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
@@ -157,7 +166,9 @@ const handlePlaceOrder = () => {
               </p>
               <h3 class="text-xl font-semibold text-white">Order summary</h3>
             </div>
-            <span class="rounded-full bg-blue-500 px-3 py-1 text-xs font-semibold text-white shadow-sm shadow-blue-500/25">
+            <span
+              class="rounded-full bg-blue-500 px-3 py-1 text-xs font-semibold text-white shadow-sm shadow-blue-500/25"
+            >
               {{ lineItems.length }} st
             </span>
           </div>
