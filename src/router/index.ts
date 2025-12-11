@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/views/HomeView.vue'
+import Upplevelse from '@/views/UpplevelseView.vue'
 import BokningSidaView from '@/views/BokningSidaView.vue'
 import CheckoutComponent from '@/components/CheckoutComponent.vue'
 
@@ -11,16 +12,6 @@ const router = createRouter({
       path: '/',
       component: Home,
     },
-
-
-
-
-
-
-
-
-
-    
     {
       path: '/bokning',
       component: BokningSidaView,
@@ -28,8 +19,11 @@ const router = createRouter({
     {
       path: '/checkout',
       component: CheckoutComponent,
-
-    }
+    },
+    {
+      path: '/upplevelse/:id',
+      component: Upplevelse,
+    },
   ],
 })
 

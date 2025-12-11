@@ -264,7 +264,7 @@ const clearCart = () => {
       <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Selected experience</p>
       <h2 class="text-xl font-semibold text-white">{{ selectedExperience.title }}</h2>
       <p class="text-sm text-slate-300">
-        {{ selectedExperience.location }} - {{ selectedExperience.date }} -
+        {{ selectedExperience.location }} - {{ selectedExperience.date_range.start_date }} -
         Age: {{ selectedExperience.age_group }}
       </p>
       <p class="text-sm text-slate-200">{{ selectedExperience.description }}</p>
