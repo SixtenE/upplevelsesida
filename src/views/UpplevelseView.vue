@@ -7,7 +7,7 @@ import type { Experience } from '@/types/Experience'
 
 const route = useRoute()
 const upplevelse = ref<Experience | null>(null)
-const totalPeople = ref(1)
+const totalPeople = ref(route.query.group_size ? Number(route.query.group_size) : 1)
 
 onMounted(() => {
   const id = route.params.id as string
@@ -81,7 +81,7 @@ onMounted(() => {
                 age_group: upplevelse.age_group,
                 id: upplevelse.id,
                 people: totalPeople,
-                date: upplevelse.date_range.start_date
+                date: route.query.date || ''
               }
             }"
             class="mt-auto w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer block text-center"
