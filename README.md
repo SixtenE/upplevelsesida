@@ -15,11 +15,11 @@
 
 ### Visa upplevelse-sida (grundläggande funktioner)
 
-- [ ] Route `/upplevelse/:id` skapad
-- [ ] Bild på upplevelse
-- [ ] Kort beskrivning av upplevelse
-- [ ] Summering av val från startsidan (datum, antal personer etc. från query params)
-- [ ] "Boka"-knapp som går till bokningssidan
+- [x] Route `/upplevelse/:id` skapad
+- [x] Bild på upplevelse
+- [x] Kort beskrivning av upplevelse
+- [x] Summering av val från startsidan (datum, antal personer etc. från query params)
+- [x] "Boka"-knapp som går till bokningssidan
 
 ### Bokningssida (grundläggande funktioner)
 
@@ -40,9 +40,9 @@
 ### Spara bokningar till kundkorg (grundläggande funktioner)
 
 - [x] Möjlighet att lägga bokningar till kundkorg (Pinia)
-- [ ] Se summering (total kostnad etc.) av bokningar som finns tillgängliga
+- [x] Se summering (total kostnad etc.) av bokningar som finns tillgängliga
 - [x] Tömma kundkorg
-- [ ] Knapp för "Gå till betalning" (ingen faktisk betalfunktion krävs, men kan visa en bekräftelsesida)
+- [x] Knapp för "Gå till betalning" (ingen faktisk betalfunktion krävs, men kan visa en bekräftelsesida)
 
 ### Skapa datan
 
@@ -54,9 +54,9 @@
 ### Routing
 
 - [x] `/` - Startsida med sökformulär och upplevelser
-- [ ] `/upplevelse/:id` - Visa specifik upplevelse
+- [x] `/upplevelse/:id` - Visa specifik upplevelse
 - [x] `/boka/:id` eller `/bokning` - Bokningssida för specifik upplevelse
-- [ ] `/kundkorg` - Kundkorgsvy
+- [x] `/kundkorg` - Kundkorgsvy (implementerad som `/checkout`)
 - [ ] Valfritt: Separata sidor för artiklar (t.ex. `/artikel/:id`)
 
 ### Tekniska krav
