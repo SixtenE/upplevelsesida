@@ -1,4 +1,4 @@
-﻿<script lang="ts" setup>
+<script lang="ts" setup>
 import { computed, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter, type LocationQuery } from 'vue-router'
 
@@ -35,7 +35,7 @@ const parsePeople = (query: LocationQuery) => {
 // hämtar experience id från query
 const pickExperienceIdFromQuery = () => {
   const queryId = typeof route.query.id === 'string' ? route.query.id : ''
-  return experiences.some((exp) => exp.id === queryId) ? queryId : experiences[0]?.id ?? ''
+  return experiences.some((exp) => exp.id === queryId) ? queryId : (experiences[0]?.id ?? '')
 }
 
 // state som innehåller formulärets data
@@ -45,7 +45,6 @@ const state = reactive({
   date: typeof route.query.date === 'string' ? route.query.date : '',
   totalPeople: parsePeople(route.query),
 })
-
 
 let hideSavedTimer: ReturnType<typeof setTimeout> | null = null
 
@@ -58,7 +57,7 @@ const ageGroupOptions = computed(() => Array.from(new Set(experiences.map((exp) 
 const applyExperienceDefaults = () => {
   if (!selectedExperience.value) return
   if (!state.ageGroup) state.ageGroup = selectedExperience.value.age_group
-  if (!state.date) state.date = selectedExperience.value.date
+  if (!state.date) state.date = selectedExperience.value.date_range.start_date
 }
 
 applyExperienceDefaults()
@@ -67,9 +66,7 @@ watch(
   () => route.query,
   (query) => {
     const nextExperienceId =
-      typeof query.id === 'string' && experiences.some((exp) => exp.id === query.id)
-        ? query.id
-        : ''
+      typeof query.id === 'string' && experiences.some((exp) => exp.id === query.id) ? query.id : ''
     if (nextExperienceId && nextExperienceId !== state.experienceId) {
       state.experienceId = nextExperienceId
     }
@@ -133,7 +130,7 @@ const isSameQuery = (nextQuery: Record<string, string>) => {
   }
   return true
 }
-// 
+//
 const canSubmit = computed(
   () =>
     Boolean(state.experienceId) &&
@@ -151,7 +148,7 @@ const handleSubmit = () => {
   cartStore.addSelection()
   showSaved.value = true
   console.log(cartStore.selections)
- 
+
   if (hideSavedTimer) {
     clearTimeout(hideSavedTimer)
   }
@@ -171,15 +168,12 @@ watch(
   { deep: true, immediate: true },
 )
 
-
 const clearCart = () => {
   cartStore.clear()
   state.ageGroup = ''
   state.date = ''
   state.totalPeople = 1
 }
-
-  
 </script>
 
 <template>
@@ -189,7 +183,6 @@ const clearCart = () => {
       class="rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg backdrop-blur flex flex-col gap-6 p-6"
       @submit.prevent="handleSubmit"
     >
-    
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <label class="flex flex-col gap-2 text-sm font-medium text-slate-100">
           <span>Experience</span>
@@ -235,7 +228,6 @@ const clearCart = () => {
           />
         </label>
       </div>
-      
 
       <div class="flex justify-end">
         <router-link class="rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 hover:bg-blue-400 transition disabled:cursor-not-allowed disabled:bg-slate-700" to="/checkout">> Checkout</router-link>
