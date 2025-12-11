@@ -1,0 +1,26 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "title": "Ett Oförglömligt Äventyr i Lund!",
+    "description": "Ge dina barn ett äventyr de aldrig kommer att glömma! Boka nu och låt dem upptäcka dinosauriernas värld på ett sätt de aldrig gjort förut. Vårt Barnens Dinosaurieäventyr i Lund har blivit en av de mest populära aktiviteterna för familjer.",
+    "image_url": "/images/article_dino.jpg",
+    "date": "2024-03-15",
+    "related_experience_id": "e6ac4117-eac7-4d5d-9b48-8ca1c3d22537"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-0123-defa-456789012345",
+    "title": "Havsfiske: En Komplett Guide för Dig Som Vill Börja",
+    "description": "Havsfiske är en spännande aktivitet som kombinerar avslappning med äventyr. I denna artikel delar vi våra bästa tips och berättar om vår guidade fisketur i Halmstad, perfekt för både nybörjare och erfarna fiskare.",
+    "image_url": "/images/article_fishing.jpg",
+    "date": "2024-07-18",
+    "related_experience_id": "8d4a7823-6108-4a34-93b1-b42cb3dfd8ed"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4567-bcde-890123456789",
+    "title": "Stand-Up Paddleboard: Din Första Gång på Vattnet",
+    "description": "SUP är en av de snabbast växande vattensporterna och det är lätt att förstå varför. I denna guide berättar vi allt du behöver veta innan din första SUP-tur, inklusive tips från vår introduktionskurs i Karlstad.",
+    "image_url": "/images/article_sup.jpg",
+    "date": "2024-11-20",
+    "related_experience_id": "4f81ef66-2e63-46b6-b9b0-5159ed3e8cf6"
+  }
+]

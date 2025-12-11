@@ -16,8 +16,6 @@ type BookingSelection = {
   createdAt: number
 }
 
-
-
 export const useCartStore = defineStore('cart', () => {
   const selectedExperienceId = ref<string | null>(null)
   const ageGroup = ref<AgeGroup | ''>('')
@@ -35,8 +33,7 @@ export const useCartStore = defineStore('cart', () => {
   }
   function setExperience(id: string | null) {
     selectedExperienceId.value = id
-    const experiencePrice =
-      id !== null ? experiences.find((exp) => exp.id === id)?.price ?? 0 : 0
+    const experiencePrice = id !== null ? (experiences.find((exp) => exp.id === id)?.price ?? 0) : 0
     price.value = experiencePrice
   }
 
@@ -55,7 +52,7 @@ export const useCartStore = defineStore('cart', () => {
   function hydrateFromExperience(exp: Experience) {
     selectedExperienceId.value = exp.id
     ageGroup.value = exp.age_group
-    date.value = exp.date
+    date.value = exp.date_range.start_date
     price.value = exp.price
   }
 
@@ -86,7 +83,6 @@ export const useCartStore = defineStore('cart', () => {
     totalPeople.value = 1
     selections.value = []
   }
-
 
   return {
     ageGroup,

@@ -6,7 +6,10 @@
     "image_url": "/images/kayak.jpg",
     "price": 650,
     "location": "Stockholm, Sverige",
-    "date": "2025-07-15",
+    "date_range": {
+      "start_date": "2025-07-15",
+      "end_date": "2025-11-15"
+    },
     "rating": 4.7,
     "age_group": "adult",
     "add_ons": [
@@ -29,7 +32,10 @@
     "image_url": "/images/yoga.jpg",
     "price": 790,
     "location": "Uppsala, Sverige",
-    "date": "2025-08-02",
+    "date_range": {
+      "start_date": "2025-08-02",
+      "end_date": "2025-12-02"
+    },
     "rating": 4.9,
     "age_group": "adult",
     "add_ons": [
@@ -52,7 +58,10 @@
     "image_url": "/images/dino.jpg",
     "price": 320,
     "location": "Lund, Sverige",
-    "date": "2025-06-30",
+    "date_range": {
+      "start_date": "2025-06-30",
+      "end_date": "2025-10-30"
+    },
     "rating": 4.4,
     "age_group": "child",
     "add_ons": [
@@ -75,7 +84,10 @@
     "image_url": "/images/wine.jpg",
     "price": 1290,
     "location": "Malmö, Sverige",
-    "date": "2025-09-10",
+    "date_range": {
+      "start_date": "2025-09-10",
+      "end_date": "2026-01-10"
+    },
     "rating": 4.9,
     "age_group": "adult",
     "add_ons": [
@@ -98,7 +110,10 @@
     "image_url": "/images/fishing.jpg",
     "price": 750,
     "location": "Halmstad, Sverige",
-    "date": "2025-07-28",
+    "date_range": {
+      "start_date": "2025-07-28",
+      "end_date": "2025-11-28"
+    },
     "rating": 4.6,
     "age_group": "adult",
     "add_ons": [
@@ -121,7 +136,10 @@
     "image_url": "/images/nature_senior.jpg",
     "price": 250,
     "location": "Örebro, Sverige",
-    "date": "2025-05-12",
+    "date_range": {
+      "start_date": "2025-05-12",
+      "end_date": "2025-09-12"
+    },
     "rating": 4.3,
     "age_group": "senior",
     "add_ons": [
@@ -144,7 +162,10 @@
     "image_url": "/images/mtb.jpg",
     "price": 590,
     "location": "Jönköping, Sverige",
-    "date": "2025-07-04",
+    "date_range": {
+      "start_date": "2025-07-04",
+      "end_date": "2025-11-04"
+    },
     "rating": 4.7,
     "age_group": "adult",
     "add_ons": [
@@ -167,7 +188,10 @@
     "image_url": "/images/theater.jpg",
     "price": 280,
     "location": "Västerås, Sverige",
-    "date": "2025-07-20",
+    "date_range": {
+      "start_date": "2025-07-20",
+      "end_date": "2025-11-20"
+    },
     "rating": 4.5,
     "age_group": "child",
     "add_ons": [
@@ -190,7 +214,10 @@
     "image_url": "/images/sup.jpg",
     "price": 420,
     "location": "Karlstad, Sverige",
-    "date": "2025-08-03",
+    "date_range": {
+      "start_date": "2025-08-03",
+      "end_date": "2025-12-03"
+    },
     "rating": 4.6,
     "age_group": "adult",
     "add_ons": [
@@ -213,7 +240,10 @@
     "image_url": "/images/astro.jpg",
     "price": 300,
     "location": "Luleå, Sverige",
-    "date": "2025-09-14",
+    "date_range": {
+      "start_date": "2025-09-14",
+      "end_date": "2026-01-14"
+    },
     "rating": 4.8,
     "age_group": "child",
     "add_ons": [
@@ -236,7 +266,10 @@
     "image_url": "/images/photo.jpg",
     "price": 950,
     "location": "Sundsvall, Sverige",
-    "date": "2025-08-18",
+    "date_range": {
+      "start_date": "2025-08-18",
+      "end_date": "2025-12-18"
+    },
     "rating": 4.9,
     "age_group": "adult",
     "add_ons": [
@@ -259,7 +292,10 @@
     "image_url": "/images/walk.jpg",
     "price": 200,
     "location": "Visby, Sverige",
-    "date": "2025-06-12",
+    "date_range": {
+      "start_date": "2025-06-12",
+      "end_date": "2025-10-12"
+    },
     "rating": 4.4,
     "age_group": "senior",
     "add_ons": [
@@ -282,7 +318,10 @@
     "image_url": "/images/horse.jpg",
     "price": 540,
     "location": "Falkenberg, Sverige",
-    "date": "2025-07-07",
+    "date_range": {
+      "start_date": "2025-07-07",
+      "end_date": "2025-11-07"
+    },
     "rating": 4.7,
     "age_group": "adult",
     "add_ons": [
@@ -305,7 +344,10 @@
     "image_url": "/images/senior_spa.jpg",
     "price": 480,
     "location": "Kalmar, Sverige",
-    "date": "2025-09-22",
+    "date_range": {
+      "start_date": "2025-09-22",
+      "end_date": "2026-01-22"
+    },
     "rating": 4.5,
     "age_group": "senior",
     "add_ons": [
@@ -328,7 +370,10 @@
     "image_url": "/images/pirate.jpg",
     "price": 380,
     "location": "Norrköping, Sverige",
-    "date": "2025-07-19",
+    "date_range": {
+      "start_date": "2025-07-19",
+      "end_date": "2025-11-19"
+    },
     "rating": 4.6,
     "age_group": "child",
     "add_ons": [
@@ -351,7 +396,10 @@
     "image_url": "/images/climb.jpg",
     "price": 450,
     "location": "Göteborg, Sverige",
-    "date": "2025-08-11",
+    "date_range": {
+      "start_date": "2025-08-11",
+      "end_date": "2025-12-11"
+    },
     "rating": 4.7,
     "age_group": "adult",
     "add_ons": [
@@ -374,7 +422,10 @@
     "image_url": "/images/bingo.jpg",
     "price": 120,
     "location": "Helsingborg, Sverige",
-    "date": "2025-06-05",
+    "date_range": {
+      "start_date": "2025-06-05",
+      "end_date": "2025-10-05"
+    },
     "rating": 4.2,
     "age_group": "senior",
     "add_ons": [
@@ -397,7 +448,10 @@
     "image_url": "/images/streetfood.jpg",
     "price": 540,
     "location": "Stockholm, Sverige",
-    "date": "2025-08-19",
+    "date_range": {
+      "start_date": "2025-08-19",
+      "end_date": "2025-12-19"
+    },
     "rating": 4.8,
     "age_group": "adult",
     "add_ons": [
@@ -420,7 +474,10 @@
     "image_url": "/images/sunset_boat.jpg",
     "price": 400,
     "location": "Hudiksvall, Sverige",
-    "date": "2025-07-22",
+    "date_range": {
+      "start_date": "2025-07-22",
+      "end_date": "2025-11-22"
+    },
     "rating": 4.7,
     "age_group": "adult",
     "add_ons": [
@@ -443,7 +500,10 @@
     "image_url": "/images/lego.jpg",
     "price": 250,
     "location": "Borås, Sverige",
-    "date": "2025-05-26",
+    "date_range": {
+      "start_date": "2025-05-26",
+      "end_date": "2025-09-26"
+    },
     "rating": 4.6,
     "age_group": "child",
     "add_ons": [

@@ -50,7 +50,7 @@ onMounted(() => {
           
           <div>
             <p class="text-sm opacity-70">Datum</p>
-            <p class="text-lg">📅 {{ upplevelse.date }}</p>
+            <p class="text-lg">📅 {{ upplevelse.date_range.start_date }} - {{ upplevelse.date_range.end_date  }}</p>
           </div>
           
           <div v-if="upplevelse.add_ons && upplevelse.add_ons.length > 0">
@@ -81,7 +81,7 @@ onMounted(() => {
                 age_group: upplevelse.age_group,
                 id: upplevelse.id,
                 people: totalPeople,
-                date: upplevelse.date
+                date: upplevelse.date_range.start_date
               }
             }"
             class="mt-auto w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer block text-center"
