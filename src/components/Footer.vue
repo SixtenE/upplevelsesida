@@ -1,171 +1,230 @@
 <script lang="ts" setup>
-import { ArrowUp } from 'lucide-vue-next'
+import { ArrowUp, Instagram, Facebook, Linkedin, Youtube, MessageSquare } from 'lucide-vue-next'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+const showScrollTop = ref(false)
+
+const handleScroll = () => {
+  showScrollTop.value = window.scrollY > 500
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+  handleScroll() // Initial check
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+const socialLinks = [
+  { icon: Instagram, label: 'Instagram', href: '#' },
+  { icon: Facebook, label: 'Facebook', href: '#' },
+  { icon: Linkedin, label: 'LinkedIn', href: '#' },
+  { icon: Youtube, label: 'YouTube', href: '#' },
+  { icon: MessageSquare, label: 'TikTok', href: '#' }
+]
+
+const footerLinks = {
+  account: [
+    { label: 'Mitt konto', href: '#' },
+    { label: 'Försäkring', href: '#' },
+    { label: 'Allmänna villkor', href: '#' },
+    { label: 'Integritetspolicy', href: '#' },
+    { label: 'Om cookies', href: '#' }
+  ],
+  service: [
+    { label: 'Kontakta oss', href: '#' },
+    { label: 'Frågor & svar', href: '#' },
+    { label: 'Våra butiker', href: '#' },
+    { label: 'Återförsäljare', href: '#' },
+    { label: 'Kontrollera giltighetstiden', href: '#' },
+    { label: 'Leverans', href: '#' }
+  ],
+  company: [
+    { label: 'Om oss', href: '#' },
+    { label: 'Support för återförsäljare', href: '#' },
+    { label: 'Bli återförsäljare', href: '#' },
+    { label: 'Bli partner', href: '#' },
+    { label: 'Press', href: '#' },
+    { label: 'Blogg', href: '#' },
+    { label: 'Jobba hos oss', href: '#' }
+  ]
+}
 </script>
 
 <template>
-  <footer class="w-full mt-16">
-    <!-- Back to top section -->
-    <div class="w-full bg-white dark:bg-neutral-950 py-3">
-      <div class="container mx-auto px-4 sm:px-0">
-        <button
-          @click="scrollToTop"
-          class="w-full text-center text-black dark:text-white hover:opacity-70 transition-opacity text-sm flex items-center justify-center gap-1"
-        >
-          <ArrowUp class="w-4 h-4" />
-          Tillbaka till toppen
-        </button>
-      </div>
-    </div>
+  <footer class="relative w-full mt-auto">
+    <!-- Back to Top Button (Floating) -->
+    <button
+      v-if="showScrollTop"
+      @click="scrollToTop"
+      class="fixed bottom-6 right-6 z-50 p-3 bg-blue-600 hover:bg-blue-700 text-white 
+             rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 
+             transform hover:-translate-y-0.5 flex items-center justify-center
+             backdrop-blur-sm bg-opacity-90"
+      aria-label="Tillbaka till toppen"
+    >
+      <ArrowUp class="w-5 h-5" />
+    </button>
+    <!-- Main Footer Content -->
+    <div class="bg-gray-900 dark:bg-gray-950 text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <!-- Brand & Description -->
+          <div class="lg:col-span-4">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold mb-3">
+                <span class="text-white">Upplevelsesida</span>
+                <span class="text-blue-400">.se</span>
+              </h3>
+              <p class="text-gray-300 leading-relaxed mb-6">
 
-    <!-- Main footer content -->
-    <div class="w-full bg-neutral-800 dark:bg-neutral-950 text-white py-12">
-      <div class="container mx-auto px-4 sm:px-0">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          <!-- Company description column -->
-          <div class="lg:col-span-1">
-            <h3 class="text-lg font-bold mb-3">upplevelsesida © 2025</h3>
-            <p class="text-sm text-neutral-300 leading-relaxed">
-              Vi är stolta över att kunna erbjuda en upplevelseplattform med ett brett utbud av de
-              bästa upplevelserna i Sverige.
-            </p>
+              </p>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 text-gray-300">
+                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                <span class="text-sm">08-123 45 67</span>
+              </div>
+              <div class="flex items-center gap-3 text-gray-300">
+                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="text-sm">hej@upplevelsesida.se</span>
+              </div>
+            </div>
           </div>
 
-          <!-- Mitt upplevelsesida column -->
-          <div>
-            <h3 class="text-base font-bold mb-4">Mitt upplevelsesida</h3>
-            <ul class="flex flex-col gap-2 text-sm">
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Mitt konto
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Försäkring
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Allmänna villkor
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Integritetspolicy
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Om cookies
-                </a>
-              </li>
-            </ul>
-          </div>
+          <!-- Links Grid -->
+          <div class="lg:col-span-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              <!-- Account Links -->
+              <div>
+                <h4 class="text-lg font-semibold mb-4 pb-2 border-b border-gray-700">
+                  Mitt upplevelsesida
+                </h4>
+                <ul class="space-y-2.5">
+                  <li v-for="link in footerLinks.account" :key="link.label">
+                    <a
+                      :href="link.href"
+                      class="text-gray-300 hover:text-white transition-colors duration-200 
+                             hover:translate-x-1 inline-block transform hover:font-medium"
+                    >
+                      {{ link.label }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-          <!-- Kundservice column -->
-          <div>
-            <h3 class="text-base font-bold mb-4">Kundservice</h3>
-            <ul class="flex flex-col gap-2 text-sm">
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Kontakta oss
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Frågor & svar
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Våra butiker
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Återförsäljare
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Kontrollera giltighetstiden
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Leverans
-                </a>
-              </li>
-            </ul>
-          </div>
+              <!-- Service Links -->
+              <div>
+                <h4 class="text-lg font-semibold mb-4 pb-2 border-b border-gray-700">
+                  Kundservice
+                </h4>
+                <ul class="space-y-2.5">
+                  <li v-for="link in footerLinks.service" :key="link.label">
+                    <a
+                      :href="link.href"
+                      class="text-gray-300 hover:text-white transition-colors duration-200 
+                             hover:translate-x-1 inline-block transform hover:font-medium"
+                    >
+                      {{ link.label }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-          <!-- Företagsinfo column -->
-          <div>
-            <h3 class="text-base font-bold mb-4">Företagsinfo</h3>
-            <ul class="flex flex-col gap-2 text-sm">
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">Om oss</a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Support för återförsäljare
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Bli återförsäljare
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Bli partner
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">Press</a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">Blogg</a>
-              </li>
-              <li>
-                <a href="#" class="text-neutral-300 hover:text-white transition-colors">
-                  Jobba hos oss
-                </a>
-              </li>
-            </ul>
+              <!-- Company Links -->
+              <div>
+                <h4 class="text-lg font-semibold mb-4 pb-2 border-b border-gray-700">
+                  Företagsinfo
+                </h4>
+                <ul class="space-y-2.5">
+                  <li v-for="link in footerLinks.company" :key="link.label">
+                    <a
+                      :href="link.href"
+                      class="text-gray-300 hover:text-white transition-colors duration-200 
+                             hover:translate-x-1 inline-block transform hover:font-medium"
+                    >
+                      {{ link.label }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Bottom footer strip -->
-    <div class="w-full bg-neutral-800 dark:bg-neutral-950 border-t border-neutral-700 py-6">
-      <div class="container mx-auto px-4 sm:px-0">
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <!-- Social media links -->
-          <div class="flex items-center gap-6 flex-wrap">
-            <a href="#" class="text-white hover:text-neutral-300 transition-colors text-sm">
-              Instagram
-            </a>
-            <a href="#" class="text-white hover:text-neutral-300 transition-colors text-sm">
-              Facebook
-            </a>
-            <a href="#" class="text-white hover:text-neutral-300 transition-colors text-sm">
-              LinkedIn
-            </a>
-            <a href="#" class="text-white hover:text-neutral-300 transition-colors text-sm">
-              YouTube
-            </a>
-            <a href="#" class="text-white hover:text-neutral-300 transition-colors text-sm">
-              TikTok
-            </a>
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+            <!-- Copyright -->
+            <div class="text-gray-400 text-sm">
+              <p>&copy; 2025 Upplevelsesida.se. Alla rättigheter förbehållna.</p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex items-center gap-4">
+              <p class="text-gray-400 text-sm hidden sm:block">Följ oss:</p>
+              <div class="flex items-center gap-3">
+                <a
+                  v-for="social in socialLinks"
+                  :key="social.label"
+                  :href="social.href"
+                  :aria-label="social.label"
+                  class="p-2 bg-gray-800 hover:bg-blue-600 rounded-lg transition-all duration-200 
+                         hover:scale-110 hover:shadow-lg"
+                >
+                  <component :is="social.icon" class="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legal Links -->
+          <div class="mt-6 pt-6 border-t border-gray-800">
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-500">
+              <a href="#" class="hover:text-gray-300 transition-colors">Integritetspolicy</a>
+              <span class="text-gray-600">•</span>
+              <a href="#" class="hover:text-gray-300 transition-colors">Användarvillkor</a>
+              <span class="text-gray-600">•</span>
+              <a href="#" class="hover:text-gray-300 transition-colors">Cookie-inställningar</a>
+              <span class="text-gray-600">•</span>
+              <a href="#" class="hover:text-gray-300 transition-colors">Juridisk information</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </footer>
 </template>
+
+<style scoped>
+/* Custom hover effects for social icons */
+a.bg-gray-800:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth transitions */
+a, button {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Newsletter form focus states */
+input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+</style>
