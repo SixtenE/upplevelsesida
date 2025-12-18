@@ -31,54 +31,70 @@ const handleAddToCart = (experience: Experience, event: Event) => {
 const sortedExperiences = computed(() => {
   const experiences = [...props.experiences]
 
-  if (props.sortBy === 'price-asc') {
-    return experiences.sort((a, b) => a.price - b.price)
-  } else if (props.sortBy === 'price-desc') {
-    return experiences.sort((a, b) => b.price - a.price)
-  } else if (props.sortBy === 'rating-desc') {
-    return experiences.sort((a, b) => b.rating - a.rating)
-  } else if (props.sortBy === 'rating-asc') {
-    return experiences.sort((a, b) => a.rating - b.rating)
+  switch (props.sortBy) {
+    case 'price-asc':
+      return experiences.sort((a, b) => a.price - b.price)
+    case 'price-desc':
+      return experiences.sort((a, b) => b.price - a.price)
+    case 'rating-desc':
+      return experiences.sort((a, b) => b.rating - a.rating)
+    case 'rating-asc':
+      return experiences.sort((a, b) => a.rating - b.rating)
+    default:
+      return experiences
   }
-
-  return experiences
 })
 </script>
 
 <template>
-  <div class="w-full flex flex-col gap-6 px-2">
-    <ul
-      v-if="sortedExperiences.length > 0"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-    >
+  <div class="w-full">
+    <template v-if="sortedExperiences.length > 0">
       <LayoutGroup>
-        <motion.li
-          v-for="experience in sortedExperiences"
-          :key="experience.id"
-          class="group"
-          layout
-        >
-          <ExperienceCard
-            :experience="experience"
-            :group-size="groupSize"
-            :date="date"
-            :age-group="ageGroup"
-            @add-to-cart="handleAddToCart"
-          />
-        </motion.li>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <motion.div
+            v-for="experience in sortedExperiences"
+            :key="experience.id"
+            layout
+            :initial="{ opacity: 0, y: 20 }"
+            :animate="{ opacity: 1, y: 0 }"
+            :exit="{ opacity: 0, y: 20 }"
+            :transition="{ duration: 0.3 }"
+            class="group"
+          >
+            <ExperienceCard
+              :experience="experience"
+              :group-size="groupSize"
+              :date="date"
+              :age-group="ageGroup"
+              @add-to-cart="handleAddToCart"
+            />
+          </motion.div>
+        </div>
       </LayoutGroup>
-    </ul>
-    <div v-else class="w-full flex flex-col items-center justify-center py-16 px-4 text-center">
-      <p class="text-neutral-600 dark:text-neutral-400 text-lg mb-2">Inga upplevelser hittades</p>
-      <p class="text-neutral-500 dark:text-neutral-500 text-sm mb-6">
-        Prova att ändra dina filter eller rensa sökningen för att se fler upplevelser.
-      </p>
-      <button
-        @click="emit('clearSearch')"
-        class="py-2 px-6 text-sm border-b-4 border-blue-800 bg-blue-600 text-white rounded-sm hover:bg-blue-700 transition-colors"
-      >
-        Rensa sökning
-      </button>
-    </div>
+    </template>
+    
+    <template v-else>
+      <div class="text-center py-16 px-4 max-w-md mx-auto">
+        <div class="w-20 h-20 mx-auto mb-6 text-gray-300 dark:text-gray-600">
+          <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+          Inga upplevelser hittades
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+          Prova att justera dina sökfilter eller utforska våra rekommenderade artiklar.
+        </p>
+        <button
+          @click="emit('clearSearch')"
+          class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl 
+                 transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5"
+        >
+          Rensa sökfilter
+        </button>
+      </div>
+    </template>
   </div>
 </template>

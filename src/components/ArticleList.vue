@@ -18,7 +18,7 @@ defineProps<Props>()
 
 <template>
   <div class="w-full flex flex-col gap-6 px-2">
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <ArticleCard v-for="article in articles" :key="article.id" :article="article" />
     </ul>
   </div>
